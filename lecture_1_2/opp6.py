@@ -1,5 +1,7 @@
 from math import pi, sin, cos, tanh
 import matplotlib.pyplot as plt
+from animation import animateFunction
+import numpy as np
 
 """
     Constants
@@ -37,15 +39,14 @@ while t_start < t_end:
 
     # F_k force of spring
     x_0 = A + B * t_start # x_0
-    delta = x_0 - x - L_0
+    delta = (x_0 - x) - L_0
     F_k = 0 if delta < 0 else delta*k
 
     # F_mg force of gravity
-    F_mg = sin(theta)*m*g
-    
+    F_mg = sin(theta)*m*g    
 
     # Integrals
-    xDotDot = (F_k + F_fr - F_mg) / m
+    xDotDot = (F_k - F_fr - F_mg) / m # F_fr is negative because it goes the opposite of xDot
     xDot = xDot + t_delta * xDotDot
     x = x + t_delta * xDot
     
@@ -62,6 +63,11 @@ while t_start < t_end:
     """
     t_start += t_delta # next t
 
-
+rotationMatrix = np.array([
+    [cos(theta), -sin(theta)],
+    [sin(theta), cos(theta)]
+])
+xy_points = [np.matmul(rotationMatrix, np.array([x, 0])) for x in x_values]
+animateFunction(xy_points, t_end, "./lecture_1_2/opp6/", "a", expandedAxis=True)
 plt.plot(t_values, x_values)
 plt.show()
