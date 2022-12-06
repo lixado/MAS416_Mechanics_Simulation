@@ -70,7 +70,6 @@ while t < t_end:
     level_2_k_delta = h_0 - (x_2+h)
     level_2_b_delta = xDot_2
 
-
     F_mg_2 = -g*m_2
     # level 1
     F_k1_m2 = level_1_k_delta * k # lowest spring
@@ -78,7 +77,6 @@ while t < t_end:
     # level 2
     F_k2_m2 = level_2_k_delta * k # lowest spring
     F_b2_m2 = level_2_b_delta * b # lowest demper
-
 
     # integrals
     xDotDot_2 = (F_mg_2 + F_k1_m2 + F_b1_m2 - (F_k2_m2 + F_b2_m2) ) / m_2
