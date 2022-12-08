@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from math import pi, sin, sqrt
+import numpy as np
 
 # constants
 
@@ -29,4 +30,5 @@ while t < tEnd:
 
 
 plt.plot(T, )
+plt.title(f'Abs(max): {max([abs(x) for x in _])}')
 plt.show()
